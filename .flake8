@@ -1,0 +1,17 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    old,
+    build,
+    dist,
+    venv
+ignore =
+    # asterisk import with __all__ definition is available
+    F403, F405,
+    # line break before/after binary operator is available
+    W503, W504
+max-line-length = 120
+extend-ignore =
+    # See https://github.com/PyCQA/pycodestyle/issues/373
+    E203,

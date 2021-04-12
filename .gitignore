@@ -1,0 +1,10 @@
+# IDE
+.idea
+
+# Python
+*.pyc
+__pycache__
+venv
+
+# Test Data
+test.db

@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "django-pendulum-field"
+version = "0.1.0"
+description = "Django Custom DateTimeField Implementation for use pendulum as default datetime handler"
+authors = ["kde713 <kde713@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Django = "~=3.0"
+pendulum = "~=2.1"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+flake8 = "^3.9.0"
+flake8-black = "^0.2.1"
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
