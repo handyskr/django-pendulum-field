@@ -18,25 +18,25 @@ class ModelFieldTests(TestCase):
         self.assertIsInstance(created_something.some_dt, pendulum.DateTime)
         self.assertEqual(created_something.some_dt, test_dt)
 
-    def test_model_auto_now(self):
+    def test_model_auto_now_add(self):
         now = pendulum.now()
         allowed_diff_minutes = 3
         test_pk = str(uuid.uuid4())
-        created_something = SomethingWithAutoNow.objects.create(id=test_pk)
+        created_something = SomethingWithAutoNowAdd.objects.create(id=test_pk)
         self.assertLessEqual((created_something.some_dt - now).in_minutes(), allowed_diff_minutes)
-        created_something = SomethingWithAutoNow.objects.get(pk=test_pk)
+        created_something = SomethingWithAutoNowAdd.objects.get(pk=test_pk)
         self.assertLessEqual((created_something.some_dt - now).in_minutes(), allowed_diff_minutes)
 
-    def test_model_auto_now_add(self):
+    def test_model_auto_now(self):
         allowed_diff_minutes = 3
         test_pk = str(uuid.uuid4())
-        SomethingWithAutoNowAdd.objects.create(id=test_pk, some_dt=pendulum.datetime(2001, 1, 1))
-        something = SomethingWithAutoNowAdd.objects.get(pk=test_pk)
+        SomethingWithAutoNow.objects.create(id=test_pk, some_dt=pendulum.datetime(2001, 1, 1))
+        something = SomethingWithAutoNow.objects.get(pk=test_pk)
         something.dummy_field = "bye"
         something.save()
         now = pendulum.now()
         self.assertLessEqual((something.some_dt - now).in_minutes(), allowed_diff_minutes)
-        something = SomethingWithAutoNowAdd.objects.get(pk=test_pk)
+        something = SomethingWithAutoNow.objects.get(pk=test_pk)
         self.assertLessEqual((something.some_dt - now).in_minutes(), allowed_diff_minutes)
 
     def test_field_lookups(self):
